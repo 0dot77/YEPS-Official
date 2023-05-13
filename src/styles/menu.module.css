@@ -1,0 +1,13 @@
+.listContainer {
+  list-style: none;
+}
+
+.list a {
+  color: #000;
+  text-decoration: none;
+}
+
+.list:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
