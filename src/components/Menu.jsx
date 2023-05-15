@@ -9,7 +9,7 @@ export default function Menu() {
   const $isLayoutOpen = useStore(isLayoutOpen);
   return (
     <>
-      {isSmallScreen && (
+      {isSmallScreen ? (
         <svg
           onClick={() => {
             isLayoutOpen.set(!$isLayoutOpen);
@@ -26,13 +26,15 @@ export default function Menu() {
             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
           ></path>
         </svg>
+      ) : (
+        <NotMobileSubMenu />
       )}
-      {$isLayoutOpen && <SubMenu />}
+      {$isLayoutOpen && <MobileSubMenu />}
     </>
   );
 }
 
-function SubMenu() {
+function MobileSubMenu() {
   return (
     <motion.div
       style={{
@@ -86,5 +88,26 @@ function SubMenu() {
         />
       </svg>
     </motion.div>
+  );
+}
+
+function NotMobileSubMenu() {
+  return (
+    <>
+      <ul className={menuStyles.listContainer}>
+        <li className={menuStyles.list}>
+          <a href="/about">ABOUT</a>
+        </li>
+        <li className={menuStyles.list}>
+          <a href="/work">WORK</a>
+        </li>
+        <li className={menuStyles.list}>
+          <a>LETTER</a>
+        </li>
+        <li className={menuStyles.list}>
+          <a>STUDY</a>
+        </li>
+      </ul>
+    </>
   );
 }
